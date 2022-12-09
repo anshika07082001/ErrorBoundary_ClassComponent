@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import ErrorBoundaryClass from './components/ErrorBoundaryClass';
+import NumberClassComp from './components/NumberClassComp';
 
 function App() {
+  var [num,setNum]=useState(6)
+
+  // random number function for class component
+  const btnHandler=()=>{
+    num = Math.floor(Math.random() * 20)+1;
+    setNum(num)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h3>Error boundary in Class Component</h3>
+      <ErrorBoundaryClass>
+      <NumberClassComp num={num} btnHandler={btnHandler}/>
+      </ErrorBoundaryClass>
     </div>
   );
 }
